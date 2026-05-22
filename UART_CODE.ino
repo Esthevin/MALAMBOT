@@ -23,9 +23,9 @@ void loop() {
   if (millis() - lastSendTime >= SEND_INTERVAL) {
     lastSendTime = millis();
 
-    float dist1 = 10.0 + (millis() % 50);
+    float dist1 = 10.52 + (millis() % 50);
     float dist2 = 20.0 + (millis() % 30);
-    float dist3 = 30.0 + (millis() % 20);
+    float dist3 = 30.89 + (millis() % 20);
 
     Serial1.print('A');
     Serial1.print(dist1, 2);
@@ -35,20 +35,13 @@ void loop() {
     Serial1.print(dist3, 2);
     Serial1.print("D\r\n");
 
-    //Serial.print("TX → I");
-    //Serial.print(dist1, 2);
-    //Serial.print("N");
-    //Serial.print(dist2, 2);
-    //Serial.print("X");
-    //Serial.print(dist3, 2);
-    //Serial.println("F");
   }
 
   // --- RECIBIR sin bloquear ---
   while (Serial1.available() > 0) {
       char c = Serial1.read();
-      Serial.print(c);  // imprimir cada caracter directo sin procesar
-      
+      //Serial.print(c);  // imprimir cada caracter directo sin procesar
+
       if (c == '\n') {
         // Trama completa: A3B2C5
         bufferRX.trim();
@@ -74,6 +67,6 @@ void loop() {
         bufferRX += c;
       }
     }
-delay(10);
+//delay(10);
   // Sin delay bloqueante
 }
